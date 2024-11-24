@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "email": "subscriber1@example.com",
+    "subscribedAt": 1729951616884
+  },
+  {
+    "id": 2,
+    "email": "subscriber2@example.com",
+    "subscribedAt": 1729951616884
+  },
+  {
+    "id": 3,
+    "email": "subscriber3@example.com",
+    "subscribedAt": 1729951616884
+  },
+  {
+    "id": 4,
+    "email": "subscriber4@example.com",
+    "subscribedAt": 1729951616884
+  },
+  {
+    "id": 5,
+    "email": "subscriber5@example.com",
+    "subscribedAt": 1729951616884
+  },
+  {
+    "email": "leduybao@gmail.com",
+    "subscribedAt": 1730042457419,
+    "id": 6
+  },
+  {
+    "email": "unclebao@gmail.com",
+    "subscribedAt": 1730042486086,
+    "id": 7
+  },
+  {
+    "email": "julie@gmail.com",
+    "subscribedAt": 1730043616508,
+    "id": 8
+  }
+]

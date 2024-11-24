@@ -1,0 +1,18 @@
+[
+  {
+    "email": "admin@gmail.com",
+    "nickname": "Admin",
+    "role": "admin",
+    "createdAt": 1729951616884,
+    "updatedAt": 1729951616884,
+    "password": "$2b$12$WpdKpEzzRz44xj9JoBYrX.VU6wbYwTR6oCNBTV/P5tCe13.ShZC0u"
+  },
+  {
+    "email": "unclebao1410@gmail.com",
+    "nickname": "Uncle Bảo",
+    "password": "$2b$12$WpdKpEzzRz44xj9JoBYrX.VU6wbYwTR6oCNBTV/P5tCe13.ShZC0u",
+    "createdAt": 1729953141598,
+    "updatedAt": 1729953141598,
+    "role": "user"
+  }
+]

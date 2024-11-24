@@ -1,0 +1,128 @@
+'use client';
+import CommentSection from "@/app/components/single_post_comps/comment_section.components";
+import { FaFacebook, FaTwitter, FaLinkedin, FaUser } from "react-icons/fa";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Link from "next/link";
+import { PostType } from "@/app/utils/db_utils";
+import RecentPostsSinglePost from "./recent_posts.single_post";
+import { useEffect, useState } from "react";
+
+type Params = Promise<{ id: string }>;
+
+const BlogPost = async ({ params }: { params: Params }) => {
+    const id = (await params).id as string;
+    const [singlePost, setSinglePost] = useState<PostType | undefined>(undefined);
+    const [beforePost, setBeforePost] = useState<PostType | undefined>(undefined);
+    const [afterPost, setAfterPost] = useState<PostType | undefined>(undefined);
+
+    useEffect(() => {
+        async function fetchSinglePost() {
+            try {
+                const post = await fetch(`http://localhost:3000/api/posts/${id ?? '0'}`).then((res) => res.json());
+                setSinglePost(post);
+            } catch (error) {
+                console.error('Error fetching single post:', error);
+            }
+        }
+
+        async function fetchBeforeAndAfterPost() {
+            try {
+                const [before, after] = await Promise.all([
+                    fetch(`http://localhost:3000/api/posts/${parseInt(id) - 1}`).then(res => res.json()),
+                    fetch(`http://localhost:3000/api/posts/${parseInt(id) + 1}`).then(res => res.json())
+                ]);
+                before && setBeforePost(before);
+                after && setAfterPost(after);
+            } catch (error) {
+                console.error('Error fetching before and after posts:', error);
+            }
+        }
+
+        fetchSinglePost();
+        fetchBeforeAndAfterPost();
+    }, [id]);
+
+    return (
+        <div className="max-w-4xl mx-auto px-4 py-8">
+            {/* Post Header */}
+            <div className="mb-8">
+                {singlePost ? (
+                    <>
+                        <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
+                        <div className="flex items-center space-x-4 text-gray-600">
+                            <div className="flex items-center">
+                                <FaUser className="mr-2" />
+                                <span>{singlePost.author}</span>
+                            </div>
+                            <span>|</span>
+                            <span>Published: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
+                        </div>
+                    </>
+                ) : (
+                    <p className="text-xl text-gray-600">No post available</p>
+                )}
+            </div>
+
+            {/* Main Content */}
+            <div className="prose max-w-none mb-8">
+                <img
+                    src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
+                    alt="Web Development"
+                    className="w-full h-96 object-cover rounded-lg mb-6"
+                />
+                <p className="text-lg mb-4">
+                    {singlePost?.content ?? "No content available"}
+                </p>
+                <div className="aspect-w-16 aspect-h-9 mb-6">
+                    <iframe
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Embedded video"
+                        className="w-full h-full rounded-lg"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </div>
+
+            {/* Social Sharing */}
+            <div className="flex space-x-4 mb-8">
+                <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    <FaFacebook />
+                    <span>Share</span>
+                </button>
+                <button className="flex items-center space-x-2 px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition">
+                    <FaTwitter />
+                    <span>Tweet</span>
+                </button>
+                <button className="flex items-center space-x-2 px-4 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition">
+                    <FaLinkedin />
+                    <span>Share</span>
+                </button>
+            </div>
+
+            {/* Post Navigation */}
+            <div className="flex justify-between mb-12">
+                {beforePost && (
+                    <Link href={`/post/${beforePost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+                        <IoIosArrowBack />
+                        <span>{beforePost.title}</span>
+                    </Link>
+                )}
+                {afterPost && (
+                    <Link href={`/post/${afterPost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+                        <span>{afterPost.title}</span>
+                        <IoIosArrowForward />
+                    </Link>
+                )}
+            </div>
+
+            {/* Related Posts */}
+            <div className="mb-12">
+                <h2 className="text-2xl font-bold mb-6">Related Posts</h2>
+                <RecentPostsSinglePost currentID={parseInt(id)} />
+            </div>
+            <CommentSection />
+        </div>
+    );
+};
+
+export default BlogPost;

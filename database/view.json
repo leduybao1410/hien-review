@@ -1,0 +1,49 @@
+[
+  {
+    "postId": 1,
+    "viewCount": 101,
+    "updatedAt": 1732438311892
+  },
+  {
+    "postId": 2,
+    "viewCount": 200
+  },
+  {
+    "postId": 3,
+    "viewCount": 100
+  },
+  {
+    "postId": 4,
+    "viewCount": 200
+  },
+  {
+    "postId": 5,
+    "viewCount": 100
+  },
+  {
+    "postId": 6,
+    "viewCount": 201,
+    "updatedAt": 1732438310251
+  },
+  {
+    "postId": 7,
+    "viewCount": 100
+  },
+  {
+    "postId": 8,
+    "viewCount": 200
+  },
+  {
+    "postId": 9,
+    "viewCount": 100
+  },
+  {
+    "postId": 10,
+    "viewCount": 202,
+    "updatedAt": 1732437397103
+  },
+  {
+    "postId": 11,
+    "viewCount": 100
+  }
+]

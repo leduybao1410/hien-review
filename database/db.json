@@ -1,0 +1,123 @@
+[
+  {
+    "id": 10,
+    "title": "Something here",
+    "content": "Content of something here",
+    "image": "/images/upload_1730050131208.jpg",
+    "excerpt": "excerpt of something here",
+    "author": "Le Duy bao",
+    "createdAt": 1730050133020,
+    "updatedAt": 1730050133020,
+    "linkYoutube": ""
+  },
+  {
+    "id": 9,
+    "title": "Getting Started with TypeScript",
+    "content": "An introductory guide to TypeScript and its benefits for JavaScript developers.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Learn the basics of TypeScript and how it can improve your JavaScript code.",
+    "author": "Le Duy Bao",
+    "createdAt": 1729907623488,
+    "updatedAt": 1729907623488,
+    "linkYoutube": ""
+  },
+  {
+    "id": 8,
+    "title": "Mastering JavaScript",
+    "content": "An in-depth guide to mastering JavaScript for modern web development.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Learn the intricacies of JavaScript and become a proficient developer.",
+    "author": "Le Duy Bao",
+    "createdAt": 1729884744013,
+    "updatedAt": 1729884744013,
+    "linkYoutube": ""
+  },
+  {
+    "id": 7,
+    "title": "Advanced CSS Techniques",
+    "content": "Explore advanced CSS techniques to create stunning web designs.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Take your CSS skills to the next level with these advanced techniques.",
+    "author": "Le Duy Bao",
+    "createdAt": 1729883776391,
+    "updatedAt": 1729883776391,
+    "linkYoutube": ""
+  },
+  {
+    "id": 6,
+    "title": "Building Responsive Websites",
+    "content": "A comprehensive guide to building responsive websites that look great on any device.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Learn how to create websites that adapt to different screen sizes and devices.",
+    "author": "Le Duy Bao",
+    "createdAt": 1729883729353,
+    "updatedAt": 1729883729353,
+    "linkYoutube": ""
+  },
+  {
+    "id": 5,
+    "title": "Introduction to Web Accessibility",
+    "content": "Understand the importance of web accessibility and how to implement it.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Make your websites accessible to all users, including those with disabilities.",
+    "author": "Le Duy Bao",
+    "createdAt": 1729883274213,
+    "updatedAt": 1729883274213,
+    "linkYoutube": ""
+  },
+  {
+    "title": "Effective SEO Strategies",
+    "content": "Learn effective SEO strategies to improve your website's search engine ranking.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Boost your website's visibility with these proven SEO techniques.",
+    "author": "Le Duy Bao",
+    "id": 4,
+    "createdAt": 1729881840724,
+    "updatedAt": 1729881840724,
+    "linkYoutube": ""
+  },
+  {
+    "id": 3,
+    "title": "The Future of Web Development",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "excerpt": "Exploring upcoming trends in web development...",
+    "createdAt": 1729878091582,
+    "updatedAt": 1729878091582,
+    "author": "John Developer",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "linkYoutube": ""
+  },
+  {
+    "id": 2,
+    "title": "Understanding React Hooks",
+    "image": "https://images.unsplash.com/photo-1555099962-4199c345e5dd",
+    "excerpt": "Deep dive into React Hooks and their uses...",
+    "createdAt": 1729878091581,
+    "updatedAt": 1729878091581,
+    "author": "John Developer",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "linkYoutube": ""
+  },
+  {
+    "id": 1,
+    "title": "10 Tips for Better Coding",
+    "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    "excerpt": "Discover the best practices for writing clean code...",
+    "createdAt": 1729878091580,
+    "updatedAt": 1729878091580,
+    "author": "John Developer",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "linkYoutube": ""
+  },
+  {
+    "id": 11,
+    "title": "Weird Thing",
+    "content": "Content of Weird Thing",
+    "image": "/images/upload_1730051545998.jpg",
+    "excerpt": "Excerpt of Weird Thing",
+    "author": "Uncle Bao",
+    "createdAt": 1730051546302,
+    "updatedAt": 1730051546302,
+    "linkYoutube": ""
+  }
+]
