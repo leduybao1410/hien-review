@@ -108,16 +108,5 @@
     "author": "John Developer",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     "linkYoutube": ""
-  },
-  {
-    "id": 11,
-    "title": "Weird Thing",
-    "content": "Content of Weird Thing",
-    "image": "/images/upload_1730051545998.jpg",
-    "excerpt": "Excerpt of Weird Thing",
-    "author": "Uncle Bao",
-    "createdAt": 1730051546302,
-    "updatedAt": 1730051546302,
-    "linkYoutube": ""
   }
 ]

@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
         const successResponse: SuccessResponse = { status: 201, message: "Registration successful", payload: { sessionToken } };
         const response = NextResponse.json(successResponse);
-        response.headers.set('Set-Cookie', `sessionToken=${sessionToken}; Expires=${expires}; Path=/; HttpOnly; Secure; SameSite=Lax; Secure`);
+        response.headers.set('Set-Cookie', `sessionToken=${sessionToken}; Expires=${expires}; Path=/; HttpOnly; SameSite=Lax; `);
         return response;
     } catch (error) {
         console.error("Registration error:", error);

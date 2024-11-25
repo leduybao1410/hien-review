@@ -22,6 +22,8 @@ export const fetchLatestVideo = async () => {
 
         const data = response.data;
 
+        console.log('Youtube data', data);
+
         if (data.items && data.items.length > 0) {
             const jsonData = {
                 updateAt: Date.now(),

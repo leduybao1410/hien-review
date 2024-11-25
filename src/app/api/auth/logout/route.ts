@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     if (force) {
         const successResponse: SuccessResponse = { status: 200, message: "Force logout successful", payload: {} };
         const response = NextResponse.json(successResponse);
-        response.headers.set('Set-Cookie', `sessionToken=; Path=/; HttpOnly; Secure; Max-Age=0`);
+        response.headers.set('Set-Cookie', `sessionToken=; Path=/; HttpOnly; Max-Age=0`);
         return response;
     }
     const cookiesStore = await cookies()
