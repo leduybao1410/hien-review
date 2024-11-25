@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { PostType } from '../schema/post.schema';
+import { PostType, PostView } from '../schema/post.schema';
 import { ErrorResponse, SuccessResponse } from '../schema/api.schema';
 
 
@@ -69,7 +69,95 @@ const addPost = async (post: Omit<PostType, 'id' | 'createdAt' | 'updatedAt'>): 
     }
 }
 
+const updatePost = async (id: string | number, post: Omit<PostType, 'id' | 'createdAt' | 'updatedAt'>): Promise<SuccessResponse | ErrorResponse> => {
+    try {
+        const filePath = path.join(process.cwd(), 'database/db.json');
+        const fileContents = await fs.readFile(filePath, 'utf-8');
+        const data: PostType[] = JSON.parse(fileContents);
 
+        const postIndex = data.findIndex(p => p.id === Number(id));
+        if (postIndex === -1) {
+            const errorResponse: ErrorResponse = { status: 404, message: 'Post not found' };
+            return errorResponse;
+        }
 
+        if (data[postIndex].image && post.image !== data[postIndex].image) {
+            await deleteOldImage(data[postIndex].image);
+        }
 
-export { getRecentPosts, addPost, getSinglePost };
+        const updatedPost: PostType = {
+            ...data[postIndex],
+            ...post,
+            updatedAt: Date.now().valueOf()
+        };
+
+        data[postIndex] = updatedPost;
+
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+        const successResponse: SuccessResponse = { status: 200, message: 'Post updated successfully', payload: updatedPost };
+        return successResponse;
+    } catch (error) {
+        console.error('Error updating post:', error);
+        const errorResponse: ErrorResponse = { status: 500, message: 'Failed to update post' };
+        return errorResponse;
+    }
+}
+
+const deleteOldImage = async (image: string): Promise<void> => {
+    const filePath = path.join(process.cwd(), 'public/', image);
+    await fs.unlink(filePath);
+}
+
+const deletePost = async (id: string | number): Promise<SuccessResponse | ErrorResponse> => {
+    try {
+        const filePath = path.join(process.cwd(), 'database/db.json');
+        const fileContents = await fs.readFile(filePath, 'utf-8');
+        const data: PostType[] = JSON.parse(fileContents);
+
+        const postIndex = data.findIndex(p => p.id === Number(id));
+        if (postIndex === -1) {
+            const errorResponse: ErrorResponse = { status: 404, message: 'Post not found' };
+            return errorResponse;
+        }
+
+        if (data[postIndex].image) {
+            await deleteOldImage(data[postIndex].image);
+        }
+
+        data.splice(postIndex, 1);
+
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+        const successResponse: SuccessResponse = { status: 200, message: 'Post deleted successfully', payload: data };
+        return successResponse;
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        const errorResponse: ErrorResponse = { status: 500, message: 'Failed to delete post' };
+        return errorResponse;
+    }
+}
+
+const deletePostView = async (id: string | number): Promise<SuccessResponse | ErrorResponse> => {
+    try {
+        const filePath = path.join(process.cwd(), 'database/view.json');
+        const fileContents = await fs.readFile(filePath, 'utf-8');
+        const data: PostView[] = JSON.parse(fileContents);
+
+        const postIndex = data.findIndex(p => p.postId === Number(id));
+        if (postIndex === -1) {
+            const errorResponse: ErrorResponse = { status: 404, message: 'Post not found' };
+            return errorResponse;
+        }
+
+        data.splice(postIndex, 1);
+
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+        const successResponse: SuccessResponse = { status: 200, message: 'Post deleted successfully', payload: data };
+        return successResponse;
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        const errorResponse: ErrorResponse = { status: 500, message: 'Failed to delete post' };
+        return errorResponse;
+    }
+}
+
+export { getRecentPosts, addPost, getSinglePost, updatePost, deleteOldImage, deletePost, deletePostView };

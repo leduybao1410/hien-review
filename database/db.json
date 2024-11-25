@@ -1,27 +1,5 @@
 [
   {
-    "id": 10,
-    "title": "Something here",
-    "content": "Content of something here",
-    "image": "/images/upload_1730050131208.jpg",
-    "excerpt": "excerpt of something here",
-    "author": "Le Duy bao",
-    "createdAt": 1730050133020,
-    "updatedAt": 1730050133020,
-    "linkYoutube": ""
-  },
-  {
-    "id": 9,
-    "title": "Getting Started with TypeScript",
-    "content": "An introductory guide to TypeScript and its benefits for JavaScript developers.",
-    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    "excerpt": "Learn the basics of TypeScript and how it can improve your JavaScript code.",
-    "author": "Le Duy Bao",
-    "createdAt": 1729907623488,
-    "updatedAt": 1729907623488,
-    "linkYoutube": ""
-  },
-  {
     "id": 8,
     "title": "Mastering JavaScript",
     "content": "An in-depth guide to mastering JavaScript for modern web development.",

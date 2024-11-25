@@ -42,9 +42,14 @@ export const getPopularPosts = async (length: number): Promise<View[]> => {
 export const getPostViewCount = async (id: string, update: boolean = false): Promise<number> => {
     const filePath = path.join(process.cwd(), 'database', 'view.json');
     const data = await fs.readFile(filePath, 'utf-8');
-    const views = JSON.parse(data);
 
-    const postView = views.find((view: { postId: number }) => view.postId === parseInt(id));
+    if (!data) {
+        throw new Error('No data found');
+    }
+
+    const views = await JSON.parse(data);
+
+    const postView = views.find((view: View) => view.postId === parseInt(id));
     if (!postView) {
         throw new Error('Post not found');
     }
@@ -57,6 +62,11 @@ export const getPostViewCount = async (id: string, update: boolean = false): Pro
 export const updateViewCount = async (postId: string) => {
     const filePath = path.join(process.cwd(), 'database', 'view.json');
     const data = await fs.readFile(filePath, 'utf-8');
+
+    if (!data) {
+        return;
+    }
+
     const views = JSON.parse(data);
 
     const postView = views.find((view: { postId: number }) => view.postId === parseInt(postId));

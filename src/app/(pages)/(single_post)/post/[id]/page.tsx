@@ -8,6 +8,7 @@ import Link from "next/link";
 import { getPostViewCount } from '@/app/utils/stat_tracking_utils';
 import { PostType } from '@/app/schema/post.schema';
 import Image from 'next/image';
+import { cookies } from 'next/headers';
 
 export const dynamicParams = false;
 
@@ -48,20 +49,50 @@ const BlogPost = async ({ params }: { params: Params }) => {
     // Get the view count and update it
     const viewCount = await getPostViewCount(id, true);
 
+
+
+    const checkAuth = async () => {
+        console.log("Checking authentication");
+        const cookieStore = await cookies();
+        const sessionToken = cookieStore.get('sessionToken')?.value;
+
+        if (!sessionToken) {
+            console.log("No session token found");
+            return false;
+        }
+        return true;
+    };
+
+    const auth = await checkAuth() ?? false;
+
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
             {/* Post Header */}
             <div className="mb-8">
                 <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
-                <div className="flex items-center space-x-4 text-gray-600">
-                    <div className="flex items-center">
-                        <FaUser className="mr-2" />
-                        <span>{singlePost.author}</span>
+                <div className="flex justify-between item-center">
+                    <div className="flex items-center space-x-4 text-gray-600">
+                        <div className="flex items-center">
+                            <FaUser className="mr-2" />
+                            <span>{singlePost.author}</span>
+                        </div>
+                        <span>|</span>
+                        <span>Published: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
+                        <span>|</span>
+                        <span>Views: {viewCount}</span>
                     </div>
-                    <span>|</span>
-                    <span>Published: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
-                    <span>|</span>
-                    <span>Views: {viewCount}</span>
+                    <div className="flex items-center space-x-4">
+                        {auth && (
+                            <div className="flex justify-end">
+                                <Link href={`/post/${id}/edit`} className="bg-blue-500 text-white px-4 py-2 rounded-md">Edit</Link>
+                            </div>
+                        )}
+                        {auth && (
+                            <div className="flex justify-end">
+                                <Link href={`/post/${id}/delete`} className="bg-red-500 text-white px-4 py-2 rounded-md">Delete</Link>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 

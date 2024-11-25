@@ -6,7 +6,8 @@
   },
   {
     "postId": 2,
-    "viewCount": 200
+    "viewCount": 201,
+    "updatedAt": 1732533486320
   },
   {
     "postId": 3,
@@ -29,22 +30,12 @@
   },
   {
     "postId": 7,
-    "viewCount": 100
+    "viewCount": 101,
+    "updatedAt": 1732530812219
   },
   {
     "postId": 8,
-    "viewCount": 200
-  },
-  {
-    "postId": 9,
-    "viewCount": 101,
-    "updatedAt": 1732464072632
-  },
-  {
-    "postId": 10,
-    "viewCount": 204,
-    "updatedAt": 1732464075582
-  }
-]"updatedAt": 1732464075582
+    "viewCount": 236,
+    "updatedAt": 1732533516890
   }
 ]
