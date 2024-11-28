@@ -99,7 +99,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
             {/* Main Content */}
             <div className="prose max-w-none mb-8">
                 <Image
-                    src={singlePost.image ?? "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"}
+                    src={singlePost.image ? singlePost.image : "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"}
                     alt={singlePost.title ?? "No image available"}
                     className="w-full h-96 object-cover rounded-lg mb-6"
                     width={1000}
