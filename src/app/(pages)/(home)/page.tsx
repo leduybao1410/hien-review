@@ -35,13 +35,13 @@ const BlogHomepage = async () => {
             <div className="mb-12 group">
               <div className="relative overflow-hidden rounded-xl">
                 <Link href={`/post/${featuredPost.id}`}>
-                  <Image
+                  {featuredPost.image && <Image
                     src={featuredPost.image}
                     alt="Featured post"
                     width={1000}
                     height={1000}
                     className="w-full h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-300"
-                  />
+                  />}
                 </Link>
               </div>
               <Link href={`/post/${featuredPost.id}`}>

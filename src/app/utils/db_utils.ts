@@ -6,6 +6,7 @@ import { ErrorResponse, SuccessResponse } from '../schema/api.schema';
 
 export const getLatestPost = async (): Promise<PostType | undefined> => {
     const posts = await getRecentPosts();
+    if (posts.length === 0) return undefined;
     return posts[0];
 }
 
@@ -31,7 +32,7 @@ const getSinglePost = async (id: string | number): Promise<PostType | undefined>
         const filePath = path.join(process.cwd(), 'database/db.json');
         const fileContents = await fs.readFile(filePath, 'utf-8');
         const data: PostType[] = JSON.parse(fileContents);
-
+        if (data.length === 0) return undefined;
         return data.find(post => post.id === Number(id));
     } catch (error) {
         console.error('Error fetching related posts:', error);

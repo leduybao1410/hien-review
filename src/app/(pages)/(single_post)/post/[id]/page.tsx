@@ -109,12 +109,14 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     {singlePost.content ?? "No content available"}
                 </p>
                 <div className="aspect-w-16 aspect-h-9 mb-6 ">
-                    {singlePost.linkYoutube !== '' && <iframe
-                        src={singlePost.linkYoutube}
-                        title={singlePost.title}
-                        className="rounded-lg mx-auto lg:w-[700px] lg:h-[400px] w-[300px] h-[169px]"
-                        allowFullScreen
-                    ></iframe>}
+                    {singlePost.linkYoutube !== '' &&
+                        <iframe
+                            src={singlePost.linkYoutube}
+                            title={singlePost.title}
+                            className="rounded-lg mx-auto lg:w-[700px] lg:h-[400px] w-[300px] h-[169px]"
+                            allowFullScreen
+                        ></iframe>
+                    }
                 </div>
             </div>
 

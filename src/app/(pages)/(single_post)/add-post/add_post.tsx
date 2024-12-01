@@ -54,14 +54,24 @@ export default function AddPostLogic() {
             alert('An error occurred during the upload. Please try again.');
         }
 
+        let convertedYoutubeLink = "";
+        if (linkYoutube) {
+            if (linkYoutube.includes("watch?v=")) {
+                convertedYoutubeLink = linkYoutube.replace("watch?v=", "embed/");
+                const tIndex = convertedYoutubeLink.indexOf("&t=");
+                if (tIndex !== -1) {
+                    convertedYoutubeLink = convertedYoutubeLink.substring(0, tIndex);
+                }
+            }
+        }
 
-        console.log("Post submitted:", { title, content, image, excerpt, author });
+        console.log("Post submitted:", { title, content, image, excerpt, author, convertedYoutubeLink });
         const response = await fetch('/api/posts/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ title, content, image, excerpt, author, linkYoutube }),
+            body: JSON.stringify({ title, content, image, excerpt, author, linkYoutube: convertedYoutubeLink }),
         });
         const responseData = await response.json();
         if (response.ok) {

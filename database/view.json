@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1,
+    "postId": 1,
+    "viewCount": 10,
+    "updatedAt": 1733053090718
+  },
+  {
+    "id": 2,
+    "postId": 2,
+    "viewCount": 3,
+    "updatedAt": 1733053033848
+  }
+]
