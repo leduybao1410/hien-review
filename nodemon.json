@@ -1,5 +1,5 @@
 {
-    "watch": ["./public/images/"],
-    "ext": "jpg,png,jpeg",
+    "watch": ["./database/db.json"],
+    "ext": "json",
     "exec": "next start"
 }
