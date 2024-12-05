@@ -1,5 +1,8 @@
 {
-    "watch": ["./database/db.json"],
+    "watch": [
+        "./database/db.json",
+        "./database/youtube.json"
+    ],
     "ext": "json",
     "exec": "next start"
 }
