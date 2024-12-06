@@ -20,7 +20,15 @@ export default async function AboutPage() {
                 Chào mừng bạn đến với <strong>Hiển Review</strong>, nơi chia sẻ những đánh giá chân thực và chuyên sâu về các sản phẩm công nghệ như laptop và tai nghe. Đằng sau mỗi bài viết là sự đam mê và nỗ lực không ngừng của Hiển – một Youtuber khiếm thị với tình yêu mãnh liệt dành cho công nghệ.
             </p>
             <p className="text-lg leading-relaxed mb-5">
-                Hiển dành hàng giờ để nghiên cứu thông số kỹ thuật, mượn trải nghiệm sản phẩm từ các cửa hàng bán lẻ uy tín, nhằm mang đến cho người xem những thông tin hữu ích và góc nhìn độc đáo. Tại <strong>Hiển Review</strong>, bạn sẽ không chỉ tìm thấy những đánh giá chất lượng mà còn cảm nhận được câu chuyện đầy cảm hứng về sự vượt qua giới hạn để chinh phục đam mê công nghệ.
+                Hiển Review mang đến những bài đánh giá chuyên sâu về thiết bị công nghệ phục vụ công việc, bao gồm:
+            </p>
+            <ul className="list-disc list-inside text-lg leading-relaxed mb-5">
+                <li>Laptop doanh nghiệp</li>
+                <li>Laptop workstation</li>
+                <li>Ultrabook văn phòng nhỏ gọn, ultrabook hiệu năng cao</li>
+            </ul>
+            <p className="text-lg leading-relaxed mb-5">
+                Bên cạnh đó, chúng tôi chia sẻ nhiều mẹo và thủ thuật hữu ích giúp bạn tối ưu hiệu suất làm việc.
             </p>
             <div className="flex lg:flex-row flex-col gap-4">
                 <div className="lg:w-1/2 w-full flex flex-col items-center justify-center">
