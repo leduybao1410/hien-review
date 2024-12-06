@@ -116,7 +116,7 @@ export default function EditPostLogic(post: any) {
     return (
         <form onSubmit={handleSubmit} method="PUT" className="space-y-6">
             <div>
-                <label htmlFor="title" className="block text-lg font-medium mb-2">Title</label>
+                <label htmlFor="title" className="block text-lg font-medium mb-2">Tiêu đề</label>
                 <input
                     type="text"
                     id="title"
@@ -127,7 +127,7 @@ export default function EditPostLogic(post: any) {
                 />
             </div>
             <div>
-                <label htmlFor="author" className="block text-lg font-medium mb-2">Author</label>
+                <label htmlFor="author" className="block text-lg font-medium mb-2">Tác giả</label>
                 <input
                     type="text"
                     id="author"
@@ -137,18 +137,17 @@ export default function EditPostLogic(post: any) {
                 />
             </div>
             <div>
-                <label htmlFor="content" className="block text-lg font-medium mb-2">Content</label>
+                <label htmlFor="content" className="block text-lg font-medium mb-2">Nội dung</label>
                 <textarea
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    className="w-full p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    rows={10}
+                    className="w-full h-[300px] p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
-                ></textarea>
+                />
             </div>
             <div>
-                <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Excerpt</label>
+                <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Mô tả</label>
                 <input
                     type="text"
                     id="excerpt"
@@ -169,7 +168,7 @@ export default function EditPostLogic(post: any) {
             </div>
 
             <div>
-                <label htmlFor="image" className="block text-lg font-medium mb-2">Current Image</label>
+                <label htmlFor="image" className="block text-lg font-medium mb-2">Ảnh hiện tại</label>
                 {(image !== "") && <img
                     src={image}
                     alt="Image Preview"
@@ -178,7 +177,7 @@ export default function EditPostLogic(post: any) {
             </div>
 
             <div>
-                <label htmlFor="image" className="block text-lg font-medium mb-2">New Image File</label>
+                <label htmlFor="image" className="block text-lg font-medium mb-2">Ảnh mới</label>
                 <input
                     type="file"
                     accept="image/*"
@@ -189,7 +188,7 @@ export default function EditPostLogic(post: any) {
             </div>
             {file && (
                 <div className="mt-4">
-                    <label className="block text-lg font-medium mb-2">Image Preview</label>
+                    <label className="block text-lg font-medium mb-2">Ảnh xem trước</label>
                     <img
                         src={URL.createObjectURL(file)}
                         alt="Image Preview"
@@ -203,14 +202,14 @@ export default function EditPostLogic(post: any) {
                     type="submit"
                     className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                 >
-                    Edit Post
+                    Lưu
                 </button>
                 <button
                     type="button"
                     className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
                     onClick={handleDelete}
                 >
-                    Delete Post
+                    Xóa
                 </button>
             </div>
         </form>

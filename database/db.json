@@ -1,35 +1,13 @@
 [
   {
-    "id": 2,
-    "title": "Giới thiệu - 2",
-    "content": "Xin chào, tôi tên là Lê Duy Bảo",
-    "image": "/images/upload_1733052959045.jpg",
-    "excerpt": "Xin chào, tôi tên là Lê Duy Bảo",
-    "author": "Lê Duy Bảo",
-    "linkYoutube": "https://www.youtube.com/embed/mN5ZKHfK26k",
-    "createdAt": 1733052959331,
-    "updatedAt": 1733052959331
-  },
-  {
     "id": 1,
-    "title": "Giới thiệu",
-    "content": "Xin chào, tôi tên là Lê Duy Bảo",
-    "image": "/images/upload_1733052030068.jpg",
-    "excerpt": "Xin chào, tôi tên là Lê Duy Bảo",
-    "author": "Lê Duy Bảo",
-    "linkYoutube": "https://www.youtube.com/embed/Pbv1z3KPPHg?si=E10hOY5zSSzbBVnG",
-    "createdAt": 1733052030471,
-    "updatedAt": 1733052030471
-  },
-  {
-    "id": 3,
-    "title": "Lời giới thiệu",
-    "content": "Xin chào, hôm nay là ngày 5/12/2024",
-    "image": "/images/upload_1733370113837.jpg",
-    "excerpt": "Xin chào, hôm nay là ngày 5/12/2024",
-    "author": "Leê Duy Bảo ",
-    "linkYoutube": "https://www.youtube.com/embed/GNLh0275B6E",
-    "createdAt": 1733370113872,
-    "updatedAt": 1733370113872
+    "title": "Giới thiệu Hiển Review ",
+    "content": "<h1><strong>Chào mừng bạn đến với Hiển Review!</strong></h1>\n<h2><i><strong>Solgan: Mua laptop,  nhớ Hiển Review.</strong></i></h2>\n\n<p>Với hơn 20 năm kinh nghiệm sử dụng và đánh giá hàng loạt mẫu desktop và laptop phục vụ học tập, làm việc, cũng như giải trí, Hiển Review là nơi bạn tìm thấy giải pháp tối ưu cho nhu cầu công nghệ của mình.\nTại đây, chúng tôi cung cấp những bài đánh giá chi tiết, giúp bạn chọn được chiếc laptop phù hợp nhất, đáp ứng mọi nhu cầu cá nhân và doanh nghiệp. </p>\n\n<p>Nếu bạn đang quan  tâm hay có ý định sở hữu một chiếc laptop đừng ngần  ngại liên hệ với chúng tôi. </p>\n\n<p>Truy cập trang <strong>Về Hiển Review</strong> để biết thêm về tôi.</p>",
+    "image": "/images/upload_1733505785043.jpg",
+    "excerpt": "Mua laptop,  nhớ Hiển Review",
+    "author": "Hồ Thái HIển",
+    "linkYoutube": "https://www.youtube.com/embed/2o012pMBhFg&list=PLNvHQLRf61b6Ic75azZqYlYbQLoif6PCz",
+    "createdAt": 1733505785577,
+    "updatedAt": 1733506443135
   }
 ]

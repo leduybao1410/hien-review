@@ -9,6 +9,7 @@ import { getPostViewCount } from '@/app/utils/stat_tracking_utils';
 import { PostType } from '@/app/schema/post.schema';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
+import DeleteButtonSinglePostComps from '@/app/components/single_post_comps/delete_button.single_post_comps';
 
 export const dynamicParams = false;
 
@@ -70,16 +71,16 @@ const BlogPost = async ({ params }: { params: Params }) => {
             {/* Post Header */}
             <div className="mb-8">
                 <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
-                <div className="flex justify-between item-center">
+                <div className="flex flex-col md:flex-row gap-4 justify-between item-center">
                     <div className="flex items-center space-x-4 text-gray-600">
                         <div className="flex items-center">
                             <FaUser className="mr-2" />
                             <span>{singlePost.author}</span>
                         </div>
                         <span>|</span>
-                        <span>Published: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
+                        <span>Ngày đăng: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
                         <span>|</span>
-                        <span>Views: {viewCount}</span>
+                        <span>Lượt xem: {viewCount}</span>
                     </div>
                     <div className="flex items-center space-x-4">
                         {auth && (
@@ -89,7 +90,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                         )}
                         {auth && (
                             <div className="flex justify-end">
-                                <Link href={`/post/${id}/delete`} className="bg-red-500 text-white px-4 py-2 rounded-md">Delete</Link>
+                                <DeleteButtonSinglePostComps id={id} />
                             </div>
                         )}
                     </div>
@@ -105,10 +106,10 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     width={1000}
                     height={1000}
                 />
-                <p className="text-lg mb-4">
-                    {singlePost.content ?? "No content available"}
-                </p>
-                <div className="aspect-w-16 aspect-h-9 mb-6 ">
+                <div className="text-lg mb-4">
+                    <div dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }} />
+                </div>
+                <div className="mb-6 ">
                     {singlePost.linkYoutube !== '' &&
                         <iframe
                             src={singlePost.linkYoutube}
@@ -154,7 +155,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
 
             {/* Related Posts */}
             <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-6">Related Posts</h2>
+                <h2 className="text-2xl font-bold mb-6">Bài viết liên quan</h2>
                 <RecentPostsSinglePost currentID={parseInt(id)} />
             </div>
             {/* <CommentSection /> */}
