@@ -30,6 +30,27 @@ export default async function AboutPage() {
             <p className="text-lg leading-relaxed mb-5">
                 Bên cạnh đó, chúng tôi chia sẻ nhiều mẹo và thủ thuật hữu ích giúp bạn tối ưu hiệu suất làm việc.
             </p>
+            <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">Sứ mệnh</h2>
+                <p className="text-lg leading-relaxed mb-4">
+                    Hiển Review cam kết giải quyết ba vấn đề lớn mà người dùng thường gặp phải:
+                </p>
+                <ol className="list-decimal list-inside text-lg leading-relaxed mb-4">
+                    <li>
+                        <strong>Tránh mua nhầm hoặc sai sản phẩm:</strong> Giúp bạn lựa chọn đúng thiết bị, tiết kiệm chi phí và công sức.
+                    </li>
+                    <li>
+                        <strong>Tìm máy bền bỉ, phù hợp doanh nghiệp:</strong> Gợi ý những sản phẩm có thể triển khai đồng loạt trong công ty, giúp tăng hiệu suất công việc, đạt được nhiều hợp đồng và cải thiện thu nhập cho toàn đội ngũ.
+                    </li>
+                    <li>
+                        <strong>Xây dựng nền tảng kiến thức công nghệ cơ bản:</strong> Giúp người dùng nắm vững các kỹ năng sử dụng máy tính, tiết kiệm thời gian tìm hiểu khi công nghệ thay đổi.
+                    </li>
+                </ol>
+                <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">Tầm nhìn</h2>
+                <p className="text-lg leading-relaxed">
+                    Giai đoạn 2025-2030, Hiển Review phấn đấu trở thành địa chỉ tư vấn laptop đáng tin cậy nhất cho cả người dùng cá nhân và doanh nghiệp tại Việt Nam.
+                </p>
+            </div>
             <div className="flex lg:flex-row flex-col gap-4">
                 <div className="lg:w-1/2 w-full flex flex-col items-center justify-center">
                     <img src="/images/avatar.jpg" alt="Avatar Hiển Review" className="w-[300px] h-[300px] aspect-square object-cover rounded-full mb-2" />
