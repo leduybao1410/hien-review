@@ -11,9 +11,6 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { BulletList } from '@tiptap/extension-bullet-list';
 import { OrderedList } from '@tiptap/extension-ordered-list';
 export const TextEditor = ({ content, setContent }: { content: string, setContent: (content: string) => void }) => {
-    if (!content) {
-        return null;
-    }
 
     const editor = useEditor({
         extensions: [
@@ -31,6 +28,10 @@ export const TextEditor = ({ content, setContent }: { content: string, setConten
             setContent(editor?.getHTML() || '');
         }
     })
+
+    if (!content) {
+        return null;
+    }
 
     return (
         <>

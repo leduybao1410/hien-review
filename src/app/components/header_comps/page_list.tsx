@@ -99,7 +99,7 @@ export default function PageList() {
 
             <div className="md:hidden absolute right-0 top-0 mt-[-20px]">
                 <SidebarProvider>
-                    <Sidebar collapsible="icon" side="right" open={isOpen}>
+                    <Sidebar collapsible="icon" side="right" className={`sidebar-open ${isOpen ? "open" : ""}`}>
                         <SidebarTrigger
                             size="icon"
                             variant={"secondary"}
