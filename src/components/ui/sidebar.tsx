@@ -160,6 +160,7 @@ SidebarProvider.displayName = "SidebarProvider"
 const Sidebar = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
+    open?: boolean
     side?: "left" | "right"
     variant?: "sidebar" | "floating" | "inset"
     collapsible?: "offcanvas" | "icon" | "none"
@@ -167,6 +168,7 @@ const Sidebar = React.forwardRef<
 >(
   (
     {
+      // Add open prop here with a default value
       side = "left",
       variant = "sidebar",
       collapsible = "offcanvas",
