@@ -51,7 +51,7 @@ const BlogHomepage = async () => {
             </div>
 
             {/* Recent Posts Grid */}
-            <h3 className="text-2xl font-bold mb-6">Recent Posts</h3>
+            <h3 className="text-2xl font-bold mb-6">Bài viết mới</h3>
             <RecentPostsHome />
           </div>
           <SideBar />

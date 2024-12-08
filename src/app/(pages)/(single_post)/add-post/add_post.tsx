@@ -1,6 +1,12 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit'
+import ListItem from '@tiptap/extension-list-item'
+import BulletList from '@tiptap/extension-bullet-list'
+import { TextEditor } from "@/app/components/single_post_comps/textEditor.componets";
+
 
 export default function AddPostLogic() {
     const router = useRouter()
@@ -10,6 +16,16 @@ export default function AddPostLogic() {
     const [excerpt, setExcerpt] = useState<string>("");
     const [author, setAuthor] = useState<string>("");
     const [linkYoutube, setLinkYoutube] = useState<string>("");
+
+    const editor = useEditor({
+        extensions: [
+            StarterKit,
+            BulletList,
+            ListItem,
+        ],
+        content: content,
+    })
+
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -113,14 +129,15 @@ export default function AddPostLogic() {
             </div>
             <div>
                 <label htmlFor="content" className="block text-lg font-medium mb-2">Content</label>
-                <textarea
+                {/* <textarea
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     className="w-full p-4 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={10}
                     required
-                ></textarea>
+                ></textarea> */}
+                <TextEditor content={content} setContent={setContent} />
             </div>
             <div>
                 <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Excerpt</label>

@@ -1,4 +1,5 @@
 "use client"
+import { TextEditor } from "@/app/components/single_post_comps/textEditor.componets";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -32,6 +33,10 @@ export default function EditPostLogic(post: any) {
             setLinkYoutube(post.linkYoutube);
         }
     }, [post]);
+
+    useEffect(() => {
+        console.log(content);
+    }, [content])
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -113,6 +118,7 @@ export default function EditPostLogic(post: any) {
         }
     }
 
+
     return (
         <form onSubmit={handleSubmit} method="PUT" className="space-y-6">
             <div>
@@ -138,13 +144,14 @@ export default function EditPostLogic(post: any) {
             </div>
             <div>
                 <label htmlFor="content" className="block text-lg font-medium mb-2">Nội dung</label>
-                <textarea
+                {/* <textarea
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     className="w-full h-[300px] p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
-                />
+                /> */}
+                <TextEditor content={content} setContent={setContent} />
             </div>
             <div>
                 <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Mô tả</label>

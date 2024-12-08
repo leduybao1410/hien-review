@@ -10,16 +10,16 @@ interface alertMessageType {
 }
 const alertMessageType = {
     success: {
-        title: "Congratulations",
-        description: "You have been subscribed to the newsletter"
+        title: "Chúc mừng",
+        description: "Bạn đã đăng ký nhận bản tin"
     },
     alreadySubscribed: {
-        title: "Oops",
-        description: "You have already subscribed to the newsletter"
+        title: "Rất tiếc",
+        description: "Bạn đã đăng ký nhận bản tin rồi"
     },
     error: {
-        title: "Oops",
-        description: "Something went wrong"
+        title: "Rất tiếc",
+        description: "Đã xảy ra lỗi"
     }
 }
 
@@ -48,14 +48,11 @@ export default function SubcribeSection() {
         });
         const data = await response.json();
         if (data.status === 200) {
-            console.log('Subscribed successfully', data.payload.id);
             setAlertMessage(alertMessageType.success);
             setEmail("");
         } else if (data.status === 400) {
-            console.log('Failed to subscribe', data.message);
             setAlertMessage(alertMessageType.alreadySubscribed);
         } else {
-            console.log('Failed to subscribe', data.message);
             setAlertMessage(alertMessageType.error);
         }
     }
@@ -64,11 +61,11 @@ export default function SubcribeSection() {
     return (
         //  Newsletter Subscription 
         <div className="bg-white p-6 rounded-xl shadow-sm">
-            <h3 className="text-xl font-bold mb-4">Subscribe to Newsletter</h3>
+            <h3 className="text-xl font-bold mb-4">Đăng ký nhận bản tin</h3>
             <form onSubmit={handleSubscribe}>
                 <input
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="Nhập email của bạn"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2 mb-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -78,7 +75,7 @@ export default function SubcribeSection() {
                     type="submit"
                     className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
                 >
-                    Subscribe
+                    Đăng ký
                 </button>
                 {alertMessage && (
                     <Alert variant={'default'} className={`mt-4 text-white px-4 py-2 rounded-lg ${alertMessage.title === "Congratulations" ? 'bg-green-600' : 'bg-red-600'}`}>

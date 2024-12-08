@@ -18,21 +18,21 @@ export default function RecentPostsHome() {
         fetchRecentPosts(6)
     }, [])
     return (
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 px-2">
             {recentPosts.map((post: PostType) => (
-                <Link href={`/post/${post.id}`} key={post.id} className="group cursor-pointer rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-gray-300 hover:bg-gray-100 transition-all duration-300">
-                    <div className="relative overflow-hidden rounded-lg">
+                <Link href={`/post/${post.id}`} key={post.id} className=" group cursor-pointer rounded-xl hover:scale-105 hover:shadow-lg hover:shadow-gray-300 hover:bg-gray-100 transition-all duration-300">
+                    <div className="relative overflow-hidden rounded-xl">
                         <Image
                             src={post.image}
                             alt={post.title}
                             width={500}
                             height={500}
-                            className="w-full h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-300"
+                            className="w-full rounded-xl border-2 border-gray-100 overflow-hidden h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-300 shadow-lg"
                         />
                     </div>
                     <div className="px-2 pb-2">
                         <h2 className="text-lg font-semibold mt-3 group-hover:text-blue-600 transition-colors">
-                            {post.title}
+                            {post.title?.split(' ').slice(0, 10).join(' ')}{(post.title?.split(' ').length ?? 0) > 10 ? '...' : ''}
                         </h2>
                         <p className="text-gray-600 mt-2">{post.excerpt.split(' ').slice(0, 100).join(' ')}{post.excerpt.split(' ').length > 100 ? '...' : ''}</p>
                         <div className="flex justify-between mt-2 items-center">

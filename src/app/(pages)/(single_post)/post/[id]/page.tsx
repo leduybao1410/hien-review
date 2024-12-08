@@ -11,6 +11,8 @@ import Image from 'next/image';
 import { cookies } from 'next/headers';
 import DeleteButtonSinglePostComps from '@/app/components/single_post_comps/delete_button.single_post_comps';
 
+
+
 export const dynamicParams = false;
 
 // // Generate static params for each post at build time
@@ -106,8 +108,12 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     width={1000}
                     height={1000}
                 />
-                <div className="text-lg mb-4">
-                    <div dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }} />
+                <div
+                    className=" text-lg mb-4 "
+                >
+                    <div
+                        dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }}
+                    />
                 </div>
                 <div className="mb-6 ">
                     {singlePost.linkYoutube !== '' &&

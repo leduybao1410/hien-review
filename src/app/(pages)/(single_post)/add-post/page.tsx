@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { Suspense, useEffect } from "react";
 
+
 const AddPost = () => {
     const router = useRouter();
     const pathname = usePathname();
@@ -28,6 +29,7 @@ const AddPost = () => {
         };
         checkAuth();
     }, []);
+
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">

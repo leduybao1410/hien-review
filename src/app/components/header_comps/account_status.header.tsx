@@ -88,7 +88,7 @@ export default function AccountStatus() {
                     </DropdownMenuItem>
                 )}
             </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu >
 
     )
 }
