@@ -25,7 +25,18 @@ export const TextEditor = ({ content, setContent }: { content: string, setConten
         ],
         content,
         onBlur: () => {
-            setContent(editor?.getHTML() || '');
+            if (!editor) return;
+            const oldContent = editor.getHTML();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(oldContent, 'text/html');
+            const headings = doc.querySelectorAll('h1, h2');
+            headings.forEach((heading, index) => {
+                heading.id = `heading-${index}`;
+            });
+            const newContent = doc.body.innerHTML;
+            editor.commands.setContent(newContent);
+            setContent(newContent);
+            console.log(newContent);
         }
     })
 

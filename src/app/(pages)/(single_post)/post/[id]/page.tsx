@@ -10,6 +10,7 @@ import { PostType } from '@/app/schema/post.schema';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
 import DeleteButtonSinglePostComps from '@/app/components/single_post_comps/delete_button.single_post_comps';
+import ScrollButton from '@/app/components/single_post_comps/scroll_button.components';
 
 
 
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 
+
 const BlogPost = async ({ params }: { params: Params }) => {
     const id = (await params).id;
     // Fetch the single post and navigation posts before and after
@@ -52,7 +54,19 @@ const BlogPost = async ({ params }: { params: Params }) => {
     // Get the view count and update it
     const viewCount = await getPostViewCount(id, true);
 
+    function getTableOfContents(content: string) {
+        const headings = content.match(/<h[1-2][^>]*>(.*?)<\/h[1-2]>/g) || [];
+        const toc = headings.map(heading => {
+            const levelMatch = heading.match(/<h([1-2])/);
+            const level = levelMatch ? parseInt(levelMatch[1]) : 0;
+            const text = heading.replace(/<[^>]+>/g, '');
+            return { text, level, id: `heading-${level}-${text}` };
+        });
 
+        return toc;
+    }
+
+    const toc = getTableOfContents(singlePost.content);
 
     const checkAuth = async () => {
         console.log("Checking authentication");
@@ -73,7 +87,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
             <div className='container flex flex-col md:flex-row gap-6'>
 
 
-                <div className="lg:w-[70%]   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10">
+                <div className="lg:w-[70%] px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-4">
                     {/* Post Header */}
                     <div className="mb-8">
                         <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
@@ -115,6 +129,19 @@ const BlogPost = async ({ params }: { params: Params }) => {
                         <div
                             className=" text-lg mb-4 "
                         >
+                            <div className="mb-8">
+                                <h2 className="text-2xl font-bold mb-4">Mục lục</h2>
+                                <ul className="list-none p-0">
+                                    {toc.map((item: any, index: any) => (
+                                        <li key={index} className="ml-0">
+                                            <ScrollButton targetId={`heading-${index}`} item={item} label={item.text} />
+                                        </li>
+                                    ))}
+                                    {singlePost.linkYoutube !== '' && <li>
+                                        <ScrollButton targetId={`youtube`} label={`Video Youtube`} />
+                                    </li>}
+                                </ul>
+                            </div>
                             <div
                                 dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }}
                             />
@@ -122,6 +149,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                         <div className="mb-6 ">
                             {singlePost.linkYoutube !== '' &&
                                 <iframe
+                                    id="youtube"
                                     src={singlePost.linkYoutube}
                                     title={singlePost.title}
                                     className="rounded-lg mx-auto lg:w-[700px] lg:h-[400px] w-[300px] h-[169px]"
@@ -166,7 +194,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
 
                     {/* <CommentSection /> */}
                 </div>
-                <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10">
+                <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-4">
                     <h2 className="text-2xl font-bold ">Bài viết liên quan</h2>
                     <RecentPostsSinglePost currentID={parseInt(id)} />
                     {/* Related Posts */}

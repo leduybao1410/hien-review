@@ -58,6 +58,10 @@ h6 {
   font-size: 0.75rem;
 }
 
+a {
+  scroll-behavior: smooth;
+}
+
 p {
   font-size: 0.875rem;
   font-weight: 400;
