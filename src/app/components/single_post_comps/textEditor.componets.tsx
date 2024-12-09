@@ -29,6 +29,13 @@ export const TextEditor = ({ content, setContent }: { content: string, setConten
         }
     })
 
+    useEffect(() => {
+        if (editor && content) {
+            editor.commands.setContent(content);
+        }
+    }, [content]);
+
+
     if (!content) {
         return null;
     }
