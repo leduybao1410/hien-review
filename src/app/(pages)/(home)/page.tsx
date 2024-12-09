@@ -23,29 +23,29 @@ const BlogHomepage = async () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f5f5]">
 
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Column */}
-          <div className="lg:w-2/3">
+          <div className="lg:w-2/3 ">
             {/* Featured Post */}
-            <div className="mb-12 group">
-              <div className="relative overflow-hidden rounded-xl">
-                <Link href={`/post/${featuredPost.id}`}>
+            <div className="mb-12 group p-4 rounded-xl bg-white shadow-lg">
+              <div className="relative overflow-hidden rounded-xl border border-gray-100 shadow-lg">
+                <Link href={`/post/${featuredPost.id}`} >
                   {featuredPost.image && <Image
                     src={featuredPost.image}
                     alt="Featured post"
                     width={1000}
                     height={1000}
-                    className="w-full h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-[400px]  object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />}
                 </Link>
               </div>
               <Link href={`/post/${featuredPost.id}`}>
-                <h2 className="text-3xl font-bold mt-4 mb-2">{featuredPost.title}</h2>
+                <h2 className="font-bold mt-4 mb-2">{featuredPost.title}</h2>
               </Link>
               <p className="text-gray-600">{featuredPost.excerpt}</p>
             </div>
@@ -56,10 +56,10 @@ const BlogHomepage = async () => {
           </div>
           <SideBar />
         </div>
-      </main>
+      </main >
 
 
-    </div>
+    </div >
   );
 };
 

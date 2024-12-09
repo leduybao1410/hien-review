@@ -69,66 +69,70 @@ const BlogPost = async ({ params }: { params: Params }) => {
     const auth = await checkAuth() ?? false;
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-            {/* Post Header */}
-            <div className="mb-8">
-                <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
-                <div className="flex flex-col md:flex-row gap-4 justify-between item-center">
-                    <div className="flex items-center space-x-4 text-gray-600">
-                        <div className="flex items-center">
-                            <FaUser className="mr-2" />
-                            <span>{singlePost.author}</span>
+        <div className="flex justify-center items-center bg-[#f5f5f5]">
+            <div className='container flex flex-col md:flex-row gap-6'>
+
+
+                <div className="lg:w-[70%]   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10">
+                    {/* Post Header */}
+                    <div className="mb-8">
+                        <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
+                        <div className="flex flex-col md:flex-row gap-4 justify-between item-center">
+                            <div className="flex items-center space-x-4 text-gray-600">
+                                <div className="flex items-center">
+                                    <FaUser className="mr-2" />
+                                    <span>{singlePost.author}</span>
+                                </div>
+                                <span>|</span>
+                                <span>Ngày đăng: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
+                                <span>|</span>
+                                <span>Lượt xem: {viewCount}</span>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                {auth && (
+                                    <div className="flex justify-end">
+                                        <Link href={`/post/${id}/edit`} className="bg-blue-500 text-white px-4 py-2 rounded-md">Edit</Link>
+                                    </div>
+                                )}
+                                {auth && (
+                                    <div className="flex justify-end">
+                                        <DeleteButtonSinglePostComps id={id} />
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <span>|</span>
-                        <span>Ngày đăng: {singlePost.createdAt ? new Date(singlePost.createdAt).toLocaleDateString() : "No date available"}</span>
-                        <span>|</span>
-                        <span>Lượt xem: {viewCount}</span>
                     </div>
-                    <div className="flex items-center space-x-4">
-                        {auth && (
-                            <div className="flex justify-end">
-                                <Link href={`/post/${id}/edit`} className="bg-blue-500 text-white px-4 py-2 rounded-md">Edit</Link>
-                            </div>
-                        )}
-                        {auth && (
-                            <div className="flex justify-end">
-                                <DeleteButtonSinglePostComps id={id} />
-                            </div>
-                        )}
+
+                    {/* Main Content */}
+                    <div className="prose max-w-none mb-8">
+                        <Image
+                            src={singlePost.image ? singlePost.image : "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"}
+                            alt={singlePost.title ?? "No image available"}
+                            className="w-full h-96 object-cover rounded-lg mb-6"
+                            width={1000}
+                            height={1000}
+                        />
+                        <div
+                            className=" text-lg mb-4 "
+                        >
+                            <div
+                                dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }}
+                            />
+                        </div>
+                        <div className="mb-6 ">
+                            {singlePost.linkYoutube !== '' &&
+                                <iframe
+                                    src={singlePost.linkYoutube}
+                                    title={singlePost.title}
+                                    className="rounded-lg mx-auto lg:w-[700px] lg:h-[400px] w-[300px] h-[169px]"
+                                    allowFullScreen
+                                ></iframe>
+                            }
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="prose max-w-none mb-8">
-                <Image
-                    src={singlePost.image ? singlePost.image : "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"}
-                    alt={singlePost.title ?? "No image available"}
-                    className="w-full h-96 object-cover rounded-lg mb-6"
-                    width={1000}
-                    height={1000}
-                />
-                <div
-                    className=" text-lg mb-4 "
-                >
-                    <div
-                        dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }}
-                    />
-                </div>
-                <div className="mb-6 ">
-                    {singlePost.linkYoutube !== '' &&
-                        <iframe
-                            src={singlePost.linkYoutube}
-                            title={singlePost.title}
-                            className="rounded-lg mx-auto lg:w-[700px] lg:h-[400px] w-[300px] h-[169px]"
-                            allowFullScreen
-                        ></iframe>
-                    }
-                </div>
-            </div>
-
-            {/* Social Sharing */}
-            {/* <div className="flex space-x-4 mb-8">
+                    {/* Social Sharing */}
+                    {/* <div className="flex space-x-4 mb-8">
                 <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                     <FaFacebook />
                     <span>Share</span>
@@ -143,28 +147,43 @@ const BlogPost = async ({ params }: { params: Params }) => {
                 </button>
             </div> */}
 
-            {/* Post Navigation */}
-            <div className="flex justify-between mb-12">
-                {beforePost ? (
-                    <Link href={`/post/${beforePost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                        <IoIosArrowBack />
-                        <span>{beforePost.title}</span>
-                    </Link>
-                ) : null}
-                {afterPost ? (
-                    <Link href={`/post/${afterPost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                        <span>{afterPost.title}</span>
-                        <IoIosArrowForward />
-                    </Link>
-                ) : null}
-            </div>
+                    {/* Post Navigation */}
+                    <div className="flex justify-between mb-12">
+                        {beforePost ? (
+                            <Link href={`/post/${beforePost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+                                <IoIosArrowBack />
+                                <span>{beforePost.title}</span>
+                            </Link>
+                        ) : null}
+                        {afterPost ? (
+                            <Link href={`/post/${afterPost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+                                <span>{afterPost.title}</span>
+                                <IoIosArrowForward />
+                            </Link>
+                        ) : null}
+                    </div>
 
-            {/* Related Posts */}
-            <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-6">Bài viết liên quan</h2>
-                <RecentPostsSinglePost currentID={parseInt(id)} />
+
+                    {/* <CommentSection /> */}
+                </div>
+                <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10">
+                    <h2 className="text-2xl font-bold ">Bài viết liên quan</h2>
+                    <RecentPostsSinglePost currentID={parseInt(id)} />
+                    {/* Related Posts */}
+                    <hr className="w-full border-gray-200 my-4"></hr>
+                    <div className="w-full flex flex-col items-center justify-center">
+                        <div className="flex flex-col items-center justify-center text-gray-800">
+                            <p className="italic leading-relaxed text-center mb-5">"Hi vọng qua các bài đánh giá của kênh Hiển Review, các bạn sẽ dễ dàng tìm được thiết bị phù hợp với mục đích và nhu cầu phục vụ cho công việc của bản thân. "</p>
+                            <p className="font-bold ">Tên đầy đủ: Hồ Thái Hiển - {new Date().getFullYear() - 1993} tuổi</p>
+                            <p className="font-bold ">Kênh Youtube: <Link className="text-red-500" href="https://www.youtube.com/@Hien_review">Hiển Review</Link></p>
+                            <p className="font-bold ">Facebook: <Link className="text-blue-500" href="https://www.facebook.com/HienReviewTechAudio">Hiển Review Fanpage</Link></p>
+                            <p className="font-bold ">Gmail: <Link className="text-green-500" href="mailto:hienreviewer@gmail.com">hienreviewer@gmail.com</Link></p>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-            {/* <CommentSection /> */}
         </div>
     );
 };

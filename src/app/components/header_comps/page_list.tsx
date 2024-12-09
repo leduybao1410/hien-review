@@ -89,8 +89,8 @@ export default function PageList() {
                         key={item.name}
                         variant={"ghost"}
                         onClick={() => handleClick(item.link)}
-                        className={`text-gray-600 hover:text-[var(--inverse-primary-color)] transition-colors
-                            ${pathname === item.link ? "text-[var(--inverse-primary-color)] font-bold" : ""}`}
+                        className={`text-white hover:text-[var(--inverse-primary-color)] transition-colors  font-bold
+                            ${pathname === item.link ? "text-[var(--inverse-primary-color)] bg-white " : ""}`}
                     >
                         {item.name}
                     </Button>
