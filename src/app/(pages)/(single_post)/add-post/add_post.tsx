@@ -17,6 +17,7 @@ export default function AddPostLogic() {
     const [author, setAuthor] = useState<string>("");
     const [linkYoutube, setLinkYoutube] = useState<string>("");
 
+
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -138,6 +139,7 @@ export default function AddPostLogic() {
                     required
                 ></textarea> */}
                 <TextEditor content={content} setContent={setContent} />
+
             </div>
             <div>
                 <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Excerpt</label>

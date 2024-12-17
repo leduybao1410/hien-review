@@ -118,7 +118,6 @@ export default function EditPostLogic(post: any) {
         }
     }
 
-
     return (
         <form onSubmit={handleSubmit} method="PUT" className="space-y-6">
             <div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Editor, EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit';
 import Bold from '@tiptap/extension-bold';
@@ -10,8 +10,9 @@ import { Heading, Level } from '@tiptap/extension-heading';
 import { Paragraph } from '@tiptap/extension-paragraph';
 import { BulletList } from '@tiptap/extension-bullet-list';
 import { OrderedList } from '@tiptap/extension-ordered-list';
-export const TextEditor = ({ content, setContent }: { content: string, setContent: (content: string) => void }) => {
 
+export const TextEditor = ({ content, setContent, }: { content: string, setContent: (content: string) => void }) => {
+    const [isSaved, setIsSaved] = useState(false);
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -24,21 +25,37 @@ export const TextEditor = ({ content, setContent }: { content: string, setConten
             OrderedList,
         ],
         content,
-        onBlur: () => {
-            if (!editor) return;
-            const oldContent = editor.getHTML();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(oldContent, 'text/html');
-            const headings = doc.querySelectorAll('h1, h2');
-            headings.forEach((heading, index) => {
-                heading.id = `heading-${index}`;
-            });
-            const newContent = doc.body.innerHTML;
-            editor.commands.setContent(newContent);
-            setContent(newContent);
-            console.log(newContent);
-        }
+        onUpdate: () => {
+            setIsSaved(false);
+        },
     })
+
+    const [savedMessage, setSavedMessage] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (isSaved) {
+            handleContentChange();
+            setSavedMessage("Chỉnh sửa đã được lưu");
+            setTimeout(() => {
+                setSavedMessage(null);
+            }, 3000);
+        }
+    }, [isSaved])
+
+    const handleContentChange = () => {
+        if (!editor) return;
+        const oldContent = editor.getHTML();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(oldContent, 'text/html');
+        const headings = doc.querySelectorAll('h1, h2');
+        headings.forEach((heading, index) => {
+            heading.id = `heading-${index}`;
+        });
+        const newContent = doc.body.innerHTML;
+        editor.commands.setContent(newContent);
+        setContent(newContent);
+    }
+
 
     useEffect(() => {
         if (editor && content) {
@@ -46,10 +63,16 @@ export const TextEditor = ({ content, setContent }: { content: string, setConten
         }
     }, [content]);
 
+    if (!editor) return null;
+
     return (
         <>
             <MenuBar editor={editor} />
             <EditorContent editor={editor} className='border border-gray-300 rounded-md p-2 max-h-[300px] min-h-[200px] overflow-y-auto' />
+            <div className='flex flex-col items-end'>
+                <button type='button' disabled={isSaved} className={`transition-all duration-500 ${isSaved ? 'bg-gray-500' : 'bg-blue-500'} text-white py-2 px-4 rounded-full mt-2`} onClick={() => setIsSaved(true)}>Lưu chỉnh sửa</button>
+                {savedMessage && <p className="text-green-500 text-sm mt-2 font-bold">{savedMessage}</p>}
+            </div>
         </>
     )
 }
@@ -59,25 +82,31 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         return null;
     }
 
-    const formatButton = (label: string, activeName: string, toggleFunction: () => void) => (
-        <button
-            type='button'
-            onClick={toggleFunction}
-            className={`px-4 py-2 rounded-md text-sm font-semibold transition duration-200 ${editor.isActive(activeName) ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
-        >
-            {label}
-        </button>
-    );
+    const formatButton = (label: string, activeName: string, toggleFunction: () => void) => {
+        if (!editor) return null;
+        return (
+            <button
+                type='button'
+                onClick={toggleFunction}
+                className={`px-4 py-2 rounded-md text-sm font-semibold transition duration-200 ${editor.isActive(activeName) ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
+            >
+                {label}
+            </button>
+        );
+    }
 
-    const formatHeadingButton = (label: string, toggleFunction: () => void) => (
-        <button
-            type='button'
-            onClick={toggleFunction}
-            className={`px-4 py-2 rounded-md font-bold focus:outline-none focus:border-none text-sm transition duration-200 ${editor.isActive('heading', { level: parseInt(label.slice(-1)) }) ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
-        >
-            {label}
-        </button>
-    );
+    const formatHeadingButton = (label: string, toggleFunction: () => void) => {
+        if (!editor) return null;
+        return (
+            <button
+                type='button'
+                onClick={toggleFunction}
+                className={`px-4 py-2 rounded-md font-bold focus:outline-none focus:border-none text-sm transition duration-200 ${editor.isActive('heading', { level: parseInt(label.slice(-1)) }) ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
+            >
+                {label}
+            </button>
+        );
+    }
 
     const toggleBold = () => {
         if (editor.isFocused) {

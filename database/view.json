@@ -8,7 +8,13 @@
   {
     "id": 2,
     "postId": 2,
-    "viewCount": 254,
-    "updatedAt": 1734412820928
+    "viewCount": 262,
+    "updatedAt": 1734415602516
+  },
+  {
+    "id": 3,
+    "postId": 3,
+    "viewCount": 3,
+    "updatedAt": 1734416382708
   }
 ]
