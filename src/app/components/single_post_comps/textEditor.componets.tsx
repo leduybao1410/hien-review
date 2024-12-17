@@ -46,15 +46,10 @@ export const TextEditor = ({ content, setContent }: { content: string, setConten
         }
     }, [content]);
 
-
-    if (!content) {
-        return null;
-    }
-
     return (
         <>
             <MenuBar editor={editor} />
-            <EditorContent editor={editor} className='border border-gray-300 rounded-md p-2 max-h-[300px] overflow-y-auto' />
+            <EditorContent editor={editor} className='border border-gray-300 rounded-md p-2 max-h-[300px] min-h-[200px] overflow-y-auto' />
         </>
     )
 }
