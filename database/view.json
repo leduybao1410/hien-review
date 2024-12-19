@@ -2,19 +2,19 @@
   {
     "id": 1,
     "postId": 1,
-    "viewCount": 30,
-    "updatedAt": 1733685791531
+    "viewCount": 31,
+    "updatedAt": 1734617913754
   },
   {
     "id": 2,
     "postId": 2,
-    "viewCount": 262,
-    "updatedAt": 1734415602516
+    "viewCount": 269,
+    "updatedAt": 1734617957453
   },
   {
     "id": 3,
     "postId": 3,
-    "viewCount": 3,
-    "updatedAt": 1734416382708
+    "viewCount": 167,
+    "updatedAt": 1734617937667
   }
 ]

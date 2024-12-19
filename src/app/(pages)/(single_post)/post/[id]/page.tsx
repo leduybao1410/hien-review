@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { cookies } from 'next/headers';
 import DeleteButtonSinglePostComps from '@/app/components/single_post_comps/delete_button.single_post_comps';
 import ScrollButton from '@/app/components/single_post_comps/scroll_button.components';
+import TOCSinglePost from './toc.single_post';
 
 
 
@@ -60,13 +61,13 @@ const BlogPost = async ({ params }: { params: Params }) => {
             const levelMatch = heading.match(/<h([1-2])/);
             const level = levelMatch ? parseInt(levelMatch[1]) : 0;
             const text = heading.replace(/<[^>]+>/g, '');
-            return { text, level, id: `heading-${level}-${text}` };
+            const id = `heading-${level}-${text}`;
+            return { text, level, id };
         });
-
         return toc;
     }
 
-    const toc = getTableOfContents(singlePost.content);
+    const toc: Array<any> = getTableOfContents(singlePost.content);
 
     const checkAuth = async () => {
         console.log("Checking authentication");
@@ -134,7 +135,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                                 <ul className="list-none p-0">
                                     {toc.map((item: any, index: any) => (
                                         <li key={index} className="ml-0">
-                                            <ScrollButton targetId={`heading-${index}`} item={item} label={item.text} />
+                                            <ScrollButton targetId={`heading-${index}`} item={item} label={item.text} fontSize="lg" />
                                         </li>
                                     ))}
                                     {singlePost.linkYoutube !== '' && <li>
@@ -194,11 +195,13 @@ const BlogPost = async ({ params }: { params: Params }) => {
 
                     {/* <CommentSection /> */}
                 </div>
-                <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-4">
+                <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-2">
+                    <h2 className="text-2xl font-bold ">Mục lục</h2>
+                    <TOCSinglePost toc={toc} />
                     <h2 className="text-2xl font-bold ">Bài viết liên quan</h2>
                     <RecentPostsSinglePost currentID={parseInt(id)} />
                     {/* Related Posts */}
-                    <hr className="w-full border-gray-200 my-4"></hr>
+                    {/* <hr className="w-full border-gray-200 my-4"></hr>
                     <div className="w-full flex flex-col items-center justify-center">
                         <div className="flex flex-col items-center justify-center text-gray-800">
                             <p className="italic leading-relaxed text-center mb-5">"Hi vọng qua các bài đánh giá của kênh Hiển Review, các bạn sẽ dễ dàng tìm được thiết bị phù hợp với mục đích và nhu cầu phục vụ cho công việc của bản thân. "</p>
@@ -207,7 +210,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                             <p className="font-bold ">Facebook: <Link className="text-blue-500" href="https://www.facebook.com/HienReviewTechAudio">Hiển Review Fanpage</Link></p>
                             <p className="font-bold ">Gmail: <Link className="text-green-500" href="mailto:hienreviewer@gmail.com">hienreviewer@gmail.com</Link></p>
                         </div>
-                    </div>
+                    </div> */}
 
 
                 </div>

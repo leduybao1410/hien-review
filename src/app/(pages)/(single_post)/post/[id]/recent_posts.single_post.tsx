@@ -29,20 +29,20 @@ export default function RecentPostsSinglePost({ currentID }: { currentID: number
         <div className="grid md:grid-cols-1 gap-6">
             {recentPosts.map((post: PostType) => (
                 (post.id !== currentID) && <Link href={`/post/${post.id}`} key={post.id} className="group cursor-pointer flex flex-row gap-4">
-                    <div className="relative overflow-hidden rounded-lg w-1/3">
+                    <div className="max-h-[80px] min-w-[80px] overflow-hidden rounded-lg shadow-lg border-2 border-gray-100 border-solid">
                         <Image
                             src={post.image}
                             alt={post.title}
                             width={500}
                             height={500}
-                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                            className="w-[80px] h-[80px] object-cover overflow-hidden transform group-hover:scale-105 transition-transform duration-300"
                         />
                     </div>
-                    <div className="w-2/3">
-                        <h4 className="text-xl font-semibold mt-3 group-hover:text-blue-600 transition-colors">
-                            {post.title}
+                    <div className="flex flex-col items-start justify-start">
+                        <h4 className="text-md font-semibold mt-3 group-hover:text-blue-600 transition-colors">
+                            {post.title?.split(' ').slice(0, 10).join(' ')}{(post.title?.split(' ').length ?? 0) > 10 ? '...' : ''}
                         </h4>
-                        <p className="text-gray-500 mt-2">{post.excerpt.slice(0, 100)}...</p>
+                        <p className="text-gray-500 mt-2">{post.excerpt.split(' ').slice(0, 10).join(' ')}{post.excerpt.split(' ').length > 10 ? '...' : ''}</p>
                     </div>
                 </Link>
             ))}
