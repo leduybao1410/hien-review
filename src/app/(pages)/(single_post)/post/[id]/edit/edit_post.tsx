@@ -12,6 +12,7 @@ export default function EditPostLogic(post: any) {
     const [author, setAuthor] = useState<string>("");
     const [linkYoutube, setLinkYoutube] = useState<string>("");
     const [image, setImage] = useState<string>("");
+    const [isSaved, setIsSaved] = useState<boolean>(false);
 
     useEffect(() => {
         if (post.title) {
@@ -41,6 +42,10 @@ export default function EditPostLogic(post: any) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (isSaved) {
+            alert("Vui lòng lưu trước khi thêm bài viết");
+            return;
+        }
         // Check file type and size (Optional)
         if (file && file.size > 5 * 1024 * 1024) { // 5MB limit example
             alert("File size should be less than 5MB");
@@ -150,7 +155,7 @@ export default function EditPostLogic(post: any) {
                     className="w-full h-[300px] p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                 /> */}
-                <TextEditor content={content} setContent={setContent} />
+                <TextEditor content={content} setContent={setContent} isSaved={isSaved} setIsSaved={setIsSaved} />
             </div>
             <div>
                 <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Mô tả</label>

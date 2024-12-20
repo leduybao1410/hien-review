@@ -25,9 +25,9 @@ export default function RecentPostsHome() {
                         <Image
                             src={post.image}
                             alt={post.title}
-                            width={500}
-                            height={500}
-                            className="w-full rounded-xl border-2 border-gray-100 overflow-hidden h-[400px] object-cover transform group-hover:scale-105 transition-transform duration-300 shadow-lg"
+                            width={200}
+                            height={200}
+                            className="w-full rounded-xl border-2 border-gray-100 overflow-hidden h-[200px] object-cover transform group-hover:scale-105 transition-transform duration-300 shadow-lg"
                         />
                     </div>
                     <div className="px-2 pb-2 ">

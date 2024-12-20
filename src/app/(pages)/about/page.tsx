@@ -76,12 +76,14 @@ export default async function AboutPage() {
                 <div className="lg:w-[30%] md:w-full h-fit gap-4 py-10 px-10 bg-white rounded-2xl shadow-xl sticky top-[80px]">
                     <div className="w-full flex flex-col items-center justify-center">
                         <img src="/images/avatar.jpg" alt="Avatar Hiển Review" className="w-[300px] h-[300px] aspect-square object-cover rounded-full mb-2" />
-                        <div className="flex flex-col items-center justify-center text-gray-800">
-                            <p className="text-lg italic leading-relaxed text-center mb-5">"Hi vọng qua các bài đánh giá của kênh Hiển Review, các bạn sẽ dễ dàng tìm được thiết bị phù hợp với mục đích và nhu cầu phục vụ cho công việc của bản thân. "</p>
-                            <p className="text-lg font-bold ">Tên đầy đủ: Hồ Thái Hiển - {new Date().getFullYear() - 1993} tuổi</p>
-                            <p className="text-lg font-bold ">Kênh Youtube: <Link className="text-red-500" href="https://www.youtube.com/@Hien_review">Hiển Review</Link></p>
-                            <p className="text-lg font-bold ">Facebook: <Link className="text-blue-500" href="https://www.facebook.com/HienReviewTechAudio">Hiển Review Fanpage</Link></p>
-                            <p className="text-lg font-bold ">Gmail: <Link className="text-green-500" href="mailto:hienreviewer@gmail.com">hienreviewer@gmail.com</Link></p>
+                        <div className="flex flex-col items-center justify-center text-gray-800 ">
+                            <p className="text-md italic leading-relaxed text-center mb-5">"Hi vọng qua các bài đánh giá của kênh Hiển Review, các bạn sẽ dễ dàng tìm được thiết bị phù hợp với mục đích và nhu cầu phục vụ cho công việc của bản thân. "</p>
+                            <div className="flex flex-col items-start justify-start">
+                                <p className="text-md font-bold ">Tác giả: Hồ Thái Hiển - {new Date().getFullYear() - 1993} tuổi</p>
+                                <p className="text-md font-bold ">Kênh Youtube: <Link className="text-red-500" href="https://www.youtube.com/@Hien_review">Hiển Review</Link></p>
+                                <p className="text-md font-bold ">Facebook: <Link className="text-blue-500" href="https://www.facebook.com/HienReviewTechAudio">Hiển Review Fanpage</Link></p>
+                                <p className="text-md font-bold ">Gmail: <Link className="text-green-500" href="mailto:hienreviewer@gmail.com">hienreviewer@gmail.com</Link></p>
+                            </div>
                         </div>
                     </div>
                 </div>

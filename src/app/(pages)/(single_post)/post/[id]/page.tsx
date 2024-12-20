@@ -131,7 +131,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                             className=" text-lg mb-4 "
                         >
                             <div className="mb-8">
-                                <h2 className="text-2xl font-bold mb-4">Mục lục</h2>
+                                <h2 className="text-2xl font-bold mb-2">Mục lục</h2>
                                 <ul className="list-none p-0">
                                     {toc.map((item: any, index: any) => (
                                         <li key={index} className="ml-0">
@@ -196,9 +196,11 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     {/* <CommentSection /> */}
                 </div>
                 <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-2">
-                    <h2 className="text-2xl font-bold ">Mục lục</h2>
+                    <h2 className="text-2xl font-bold mb-[-16px]">Mục lục</h2>
+                    <hr className="w-full border-gray-200 my-0 mb-[-16px]"></hr>
                     <TOCSinglePost toc={toc} />
-                    <h2 className="text-2xl font-bold ">Bài viết liên quan</h2>
+                    <h2 className="text-2xl font-bold mb-[-16px]">Bài viết liên quan</h2>
+                    <hr className="w-full border-gray-200 my-0 mb-[-16px]"></hr>
                     <RecentPostsSinglePost currentID={parseInt(id)} />
                     {/* Related Posts */}
                     {/* <hr className="w-full border-gray-200 my-4"></hr>

@@ -33,7 +33,7 @@ const AddPost = () => {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            <h1 className="text-4xl font-bold mb-8">Add New Post</h1>
+            <h1 className="text-4xl font-bold mb-8">Thêm bài viết mới</h1>
             <Suspense fallback={<div>Loading...</div>}>
                 <AddPostLogic />
             </Suspense>

@@ -16,7 +16,7 @@ export default function AddPostLogic() {
     const [excerpt, setExcerpt] = useState<string>("");
     const [author, setAuthor] = useState<string>("");
     const [linkYoutube, setLinkYoutube] = useState<string>("");
-
+    const [isSaved, setIsSaved] = useState<boolean>(false);
 
     const editor = useEditor({
         extensions: [
@@ -31,15 +31,19 @@ export default function AddPostLogic() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (isSaved) {
+            alert("Vui lòng lưu trước khi thêm bài viết");
+            return;
+        }
         // Handle post submission logic here
         if (!file) {
-            alert("Please upload an image");
+            alert("Vui lòng tải lên một hình ảnh");
             return;
         }
 
         // Check file type and size (Optional)
         if (file.size > 5 * 1024 * 1024) { // 5MB limit example
-            alert("File size should be less than 5MB");
+            alert("Kích cỡ file không được lớn hơn 5MB");
             return;
         }
 
@@ -55,7 +59,7 @@ export default function AddPostLogic() {
             });
 
             if (!res.ok) {
-                alert('File upload failed');
+                alert('Tải lên file thất bại');
                 return;
             }
 
@@ -68,7 +72,7 @@ export default function AddPostLogic() {
             }
         } catch (error) {
             console.error("Error uploading file:", error);
-            alert('An error occurred during the upload. Please try again.');
+            alert('Có lỗi xảy ra trong quá trình tải lên. Vui lòng thử lại.');
         }
 
         let convertedYoutubeLink = "";
@@ -108,7 +112,7 @@ export default function AddPostLogic() {
     return (
         <form onSubmit={handleSubmit} method="POST" className="space-y-6">
             <div>
-                <label htmlFor="title" className="block text-lg font-medium mb-2">Title</label>
+                <label htmlFor="title" className="block text-lg font-medium mb-2">Tiêu đề</label>
                 <input
                     type="text"
                     id="title"
@@ -119,7 +123,7 @@ export default function AddPostLogic() {
                 />
             </div>
             <div>
-                <label htmlFor="author" className="block text-lg font-medium mb-2">Author</label>
+                <label htmlFor="author" className="block text-lg font-medium mb-2">Tác giả</label>
                 <input
                     type="text"
                     id="author"
@@ -129,7 +133,7 @@ export default function AddPostLogic() {
                 />
             </div>
             <div>
-                <label htmlFor="content" className="block text-lg font-medium mb-2">Content</label>
+                <label htmlFor="content" className="block text-lg font-medium mb-2">Nội dung</label>
                 {/* <textarea
                     id="content"
                     value={content}
@@ -138,11 +142,11 @@ export default function AddPostLogic() {
                     rows={10}
                     required
                 ></textarea> */}
-                <TextEditor content={content} setContent={setContent} />
+                <TextEditor content={content} setContent={setContent} isSaved={isSaved} setIsSaved={setIsSaved} />
 
             </div>
             <div>
-                <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Excerpt</label>
+                <label htmlFor="excerpt" className="block text-lg font-medium mb-2">Tóm tắt</label>
                 <input
                     type="text"
                     id="excerpt"
@@ -186,7 +190,7 @@ export default function AddPostLogic() {
                 type="submit"
                 className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
-                Add Post
+                Thêm bài viết
             </button>
         </form>
     )

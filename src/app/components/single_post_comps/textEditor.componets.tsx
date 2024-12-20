@@ -11,8 +11,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { BulletList } from '@tiptap/extension-bullet-list';
 import { OrderedList } from '@tiptap/extension-ordered-list';
 
-export const TextEditor = ({ content, setContent, }: { content: string, setContent: (content: string) => void }) => {
-    const [isSaved, setIsSaved] = useState(false);
+export const TextEditor = ({ content, setContent, isSaved, setIsSaved }: { content: string, setContent: (content: string) => void, isSaved: boolean, setIsSaved: (isSaved: boolean) => void }) => {
     const editor = useEditor({
         extensions: [
             StarterKit,
