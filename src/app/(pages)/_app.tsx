@@ -1,5 +1,4 @@
 import { AppProps } from 'next/app';
-import Script from 'next/script';
 
 import GoogleAnalytics from '@/app/components/GoogleAnalytics';
 

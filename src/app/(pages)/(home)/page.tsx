@@ -22,6 +22,8 @@ const BlogHomepage = async () => {
     content: latestPost?.content || ''
   };
 
+  const duration = Math.round(featuredPost.content.split(' ').length / 200);
+
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
 
@@ -48,6 +50,7 @@ const BlogHomepage = async () => {
                 <h2 className="font-bold mt-4 mb-2">{featuredPost.title}</h2>
               </Link>
               <p className="text-gray-600">{featuredPost.excerpt}</p>
+              <p className="text-gray-600 font-bold mt-2">{featuredPost.author} - {duration} phút</p>
             </div>
 
             {/* Recent Posts Grid */}

@@ -12,6 +12,8 @@ import { cookies } from 'next/headers';
 import DeleteButtonSinglePostComps from '@/app/components/single_post_comps/delete_button.single_post_comps';
 import ScrollButton from '@/app/components/single_post_comps/scroll_button.components';
 import TOCSinglePost from './toc.single_post';
+import ReadingVoice from '@/app/components/single_post_comps/reading_voice.single_post_comps';
+
 
 
 
@@ -88,12 +90,12 @@ const BlogPost = async ({ params }: { params: Params }) => {
             <div className='container flex flex-col md:flex-row gap-6'>
 
 
-                <div className="lg:w-[70%] px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-4">
+                <div className="lg:w-[70%] md:px-4 px-2 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-4">
                     {/* Post Header */}
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold mb-4">{singlePost.title}</h1>
+                        <h1 className="text-xl md:text-2xl font-bold mb-4">{singlePost.title}</h1>
                         <div className="flex flex-col md:flex-row gap-4 justify-between item-center">
-                            <div className="flex items-center space-x-4 text-gray-600">
+                            <div className="flex items-center space-x-4 text-gray-600 text-sm md:text-base">
                                 <div className="flex items-center">
                                     <FaUser className="mr-2" />
                                     <span>{singlePost.author}</span>
@@ -119,7 +121,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     </div>
 
                     {/* Main Content */}
-                    <div className="prose max-w-none mb-8">
+                    <div className="prose max-w-none mb-8 px-4">
                         <Image
                             src={singlePost.image ? singlePost.image : "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"}
                             alt={singlePost.title ?? "No image available"}
@@ -131,6 +133,8 @@ const BlogPost = async ({ params }: { params: Params }) => {
                             className=" text-lg mb-4 "
                         >
                             <div className="mb-8">
+                                <ReadingVoice text={singlePost.content ?? "No content available"} />
+                                <hr className="w-full border-gray-200 my-4"></hr>
                                 <h2 className="text-2xl font-bold mb-2">Mục lục</h2>
                                 <ul className="list-none p-0">
                                     {toc.map((item: any, index: any) => (

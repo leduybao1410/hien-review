@@ -25,7 +25,7 @@ export default function PageList() {
 
     const list = [
         { name: "Trang chủ", link: "/", icon: Home },
-        { name: "Về Hiển Review", link: "/about", icon: Info },
+        { name: "Về Hiển Review", link: "/about", icon: Info }
     ];
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
