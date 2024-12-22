@@ -179,14 +179,18 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     {/* Post Navigation */}
                     <div className="flex justify-between mb-12">
                         {beforePost ? (
-                            <Link href={`/post/${beforePost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+                            <Link href={`/post/${beforePost.id}`} className="max-w-[45%] flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                                 <IoIosArrowBack />
-                                <span>{beforePost.title}</span>
+                                <span>
+                                    {beforePost.title?.split(' ').slice(0, 10).join(' ')}{(beforePost.title?.split(' ').length ?? 0) > 10 ? '...' : ''}
+                                </span>
                             </Link>
                         ) : null}
                         {afterPost ? (
-                            <Link href={`/post/${afterPost.id}`} className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                                <span>{afterPost.title}</span>
+                            <Link href={`/post/${afterPost.id}`} className="max-w-[45%] flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
+                                <span>
+                                    {afterPost.title?.split(' ').slice(0, 10).join(' ')}{(afterPost.title?.split(' ').length ?? 0) > 10 ? '...' : ''}
+                                </span>
                                 <IoIosArrowForward />
                             </Link>
                         ) : null}
