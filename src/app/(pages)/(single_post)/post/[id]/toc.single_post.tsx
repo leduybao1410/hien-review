@@ -50,7 +50,7 @@ const TOCSinglePost = ({ toc }: { toc: Array<any> }) => {
 
     useEffect(() => {
         const activeIndex = toc.findIndex(item => item.text === currentHeading);
-        if (activeIndex !== -1 && tocRefs.current[activeIndex]) {
+        if (activeIndex !== -1 && tocRefs.current[activeIndex] && window.innerWidth > 768) {
             tocRefs.current[activeIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }, [currentHeading]);
