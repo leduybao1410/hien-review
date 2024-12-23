@@ -107,6 +107,21 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         );
     }
 
+    const formatContent = () => {
+        if (!editor) return;
+        const content = editor.getHTML();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(content, 'text/html');
+        const headings = doc.querySelectorAll('h1, h2');
+        headings.forEach((heading, index) => {
+            heading.id = `heading-${index}`;
+        });
+        const newContent = doc.body.innerHTML;
+        let cleanedContent = newContent.replace(/\s+/g, ' ').trim();
+        cleanedContent = cleanedContent.replace(/&nbsp;/g, ' ').trim();
+        editor.commands.setContent(cleanedContent);
+    }
+
     const toggleBold = () => {
         if (editor.isFocused) {
             editor.chain().toggleBold().run();
@@ -164,7 +179,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
     };
 
     return (
-        <div className="flex gap-2 my-2">
+        <div className="flex flex-wrap gap-2 my-2">
             {formatButton('Bold', 'bold', toggleBold)}
             {formatButton('Italic', 'italic', toggleItalic)}
             {formatButton('Underline', 'underline', toggleUnderline)}
@@ -174,6 +189,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
             {formatButton('Paragraph', 'paragraph', toggleParagraph)}
             {formatButton('Bullet List', 'bulletList', toggleBulletList)}
             {formatButton('Ordered List', 'orderedList', toggleOrderedList)}
+            {formatButton('Prettier', 'prettier', formatContent)}
         </div>
     );
 }

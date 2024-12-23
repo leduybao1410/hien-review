@@ -1,19 +1,20 @@
 'use client'
 import ScrollButton from '@/app/components/single_post_comps/scroll_button.components';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const TOCSinglePost = ({ toc }: { toc: Array<any> }) => {
 
     const getPositionY = (text: string) => {
-        const elements = Array.from(document.querySelectorAll('h1, h2'));
+        const elements = Array.from(document.querySelectorAll('h1, h2, h3'));
         const element = elements.find(el => el.innerHTML?.includes(text));
         if (element !== undefined) {
             return Math.floor(element.getBoundingClientRect().top - 20);
         }
         return 0;
-
     }
     const [headingPositionArray, setHeadingPositionArray] = useState<any[]>([]);
+    const [currentHeading, setCurrentHeading] = useState<any>(null);
+    const tocRefs = useRef<(HTMLLIElement | null)[]>([]);
 
     useEffect(() => {
         toc.map((element: any) => {
@@ -24,8 +25,6 @@ const TOCSinglePost = ({ toc }: { toc: Array<any> }) => {
             headingPositionArray.push(item);
         });
     }, [toc])
-
-    const [currentHeading, setCurrentHeading] = useState<any>(null);
 
     function getClosestHeadingPosition(currentPosition: number) {
         if (headingPositionArray.length === 0) return null;
@@ -49,14 +48,26 @@ const TOCSinglePost = ({ toc }: { toc: Array<any> }) => {
         };
     }, [headingPositionArray]);
 
-
-
+    useEffect(() => {
+        const activeIndex = toc.findIndex(item => item.text === currentHeading);
+        if (activeIndex !== -1 && tocRefs.current[activeIndex]) {
+            tocRefs.current[activeIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }, [currentHeading]);
 
     return (
-        <div className="flex flex-col items-start justify-start">
+        <div id="toc-container" className="max-h-[250px] overflow-y-auto flex flex-col items-start justify-start">
             <ul className="list-none p-0 text-sm">
                 {toc.map((item: any, index: any) => (
-                    <li key={index} className={`ml-0 text-sm`}>
+                    <li
+                        key={index}
+                        ref={el => {
+                            if (el) {
+                                tocRefs.current[index] = el;
+                            }
+                        }}
+                        className={`ml-0 text-sm`}
+                    >
                         <ScrollButton targetId={`heading-${index}`} item={item} isActive={currentHeading === item.text} label={item.text} fontSize="md" />
                     </li>
                 ))}

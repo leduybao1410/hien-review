@@ -26,7 +26,7 @@ export default function RecentPostsSinglePost({ currentID }: { currentID: number
         fetchRecentPosts(4)
     }, [])
     return (
-        <div className="grid md:grid-cols-1 gap-6">
+        <div className="grid md:grid-cols-1 gap-3">
             {recentPosts.map((post: PostType) => (
                 (post.id !== currentID) && <Link href={`/post/${post.id}`} key={post.id} className="group cursor-pointer flex flex-row gap-4">
                     <div className="max-h-[80px] min-w-[80px] overflow-hidden rounded-lg shadow-lg border-2 border-gray-100 border-solid">

@@ -31,7 +31,7 @@ export default function AddPostLogic() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (isSaved) {
+        if (!isSaved) {
             alert("Vui lòng lưu trước khi thêm bài viết");
             return;
         }

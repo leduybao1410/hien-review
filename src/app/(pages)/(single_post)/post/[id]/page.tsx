@@ -58,9 +58,9 @@ const BlogPost = async ({ params }: { params: Params }) => {
     const viewCount = await getPostViewCount(id, true);
 
     function getTableOfContents(content: string) {
-        const headings = content.match(/<h[1-2][^>]*>(.*?)<\/h[1-2]>/g) || [];
+        const headings = content.match(/<h[1-3][^>]*>(.*?)<\/h[1-3]>/g) || [];
         const toc = headings.map(heading => {
-            const levelMatch = heading.match(/<h([1-2])/);
+            const levelMatch = heading.match(/<h([1-3])/);
             const level = levelMatch ? parseInt(levelMatch[1]) : 0;
             const text = heading.replace(/<[^>]+>/g, '');
             const id = `heading-${level}-${text}`;
@@ -204,10 +204,10 @@ const BlogPost = async ({ params }: { params: Params }) => {
                     {/* <CommentSection /> */}
                 </div>
                 <div className="lg:w-[30%] sticky top-[80px] h-fit flex flex-col gap-6   px-4 py-8 bg-white rounded-2xl border border-gray-100 shadow-xl my-10 mx-2">
-                    <h2 className="text-2xl font-bold mb-[-16px]">Mục lục</h2>
+                    <h2 className="text-xl font-bold mb-[-16px]">Mục lục</h2>
                     <hr className="w-full border-gray-200 my-0 mb-[-16px]"></hr>
                     <TOCSinglePost toc={toc} />
-                    <h2 className="text-2xl font-bold mb-[-16px]">Bài viết liên quan</h2>
+                    <h2 className="text-xl font-bold mb-[-16px]">Bài viết liên quan</h2>
                     <hr className="w-full border-gray-200 my-0 mb-[-16px]"></hr>
                     <RecentPostsSinglePost currentID={parseInt(id)} />
                     {/* Related Posts */}

@@ -109,7 +109,7 @@ const ReadingVoice: React.FC<{ text: string }> = ({ text }) => {
                     <div className='flex flex-row items-center space-x-2 '>
                         <div className="flex items-center min-w-[200px] w-full relative border-2 border-gray-300 rounded-full overflow-hidden bg-gray-200">
                             <div style={{ width: `${getPercentage()}%` }} className="h-[25px] bg-gray-900 rounded-full"></div>
-                            <p className={`${getPercentage() > 50 ? 'text-white' : 'text-gray-900'} font-semibold text-center absolute w-full`}>
+                            <p className={`${getPercentage() > 45 ? 'text-white' : 'text-gray-900'} font-semibold text-center absolute w-full`}>
                                 {getPercentage()}%
                             </p>
                         </div>
