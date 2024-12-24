@@ -10,8 +10,13 @@ import { Heading, Level } from '@tiptap/extension-heading';
 import { Paragraph } from '@tiptap/extension-paragraph';
 import { BulletList } from '@tiptap/extension-bullet-list';
 import { OrderedList } from '@tiptap/extension-ordered-list';
+import { Image } from '@tiptap/extension-image';
+import ImageUploadPopup from './popup_upload_image.single_post_comps';
+
+
 
 export const TextEditor = ({ content, setContent, isSaved, setIsSaved }: { content: string, setContent: (content: string) => void, isSaved: boolean, setIsSaved: (isSaved: boolean) => void }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -22,6 +27,7 @@ export const TextEditor = ({ content, setContent, isSaved, setIsSaved }: { conte
             Paragraph,
             BulletList,
             OrderedList,
+            Image,
         ],
         content,
         onUpdate: () => {
@@ -56,6 +62,8 @@ export const TextEditor = ({ content, setContent, isSaved, setIsSaved }: { conte
     }
 
 
+
+
     useEffect(() => {
         if (editor && content) {
             editor.commands.setContent(content);
@@ -66,8 +74,9 @@ export const TextEditor = ({ content, setContent, isSaved, setIsSaved }: { conte
 
     return (
         <>
-            <MenuBar editor={editor} />
-            <EditorContent editor={editor} className='border border-gray-300 rounded-md p-2 max-h-[300px] min-h-[200px] overflow-y-auto' />
+            {isOpen && <ImageUploadPopup editor={editor} isOpen={isOpen} closePopup={() => setIsOpen(false)} />}
+            <MenuBar isOpen={isOpen} setIsOpen={setIsOpen} editor={editor} />
+            <EditorContent editor={editor} className='border shadow-md border-gray-300 rounded-md p-4 max-h-[400px] min-h-[200px] overflow-y-auto' />
             <div className='flex flex-col items-end'>
                 <button type='button' disabled={isSaved} className={`transition-all duration-500 ${isSaved ? 'bg-gray-500' : 'bg-blue-500'} text-white py-2 px-4 rounded-full mt-2`} onClick={() => setIsSaved(true)}>Lưu chỉnh sửa</button>
                 {savedMessage && <p className="text-green-500 text-sm mt-2 font-bold">{savedMessage}</p>}
@@ -76,7 +85,7 @@ export const TextEditor = ({ content, setContent, isSaved, setIsSaved }: { conte
     )
 }
 
-const MenuBar = ({ editor }: { editor: Editor | null }) => {
+const MenuBar = ({ isOpen, setIsOpen, editor }: { isOpen: boolean, setIsOpen: (isOpen: boolean) => void, editor: Editor | null }) => {
     if (!editor) {
         return null;
     }
@@ -178,6 +187,14 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         }
     };
 
+    const addImage = () => {
+        setIsOpen(true);
+        // const url = prompt('Enter the image URL');
+        // if (url) {
+        //     editor.chain().focus().setImage({ src: url, alt: 'Image', title: 'Image' }).run();
+        // }
+    };
+
     return (
         <div className="flex flex-wrap gap-2 my-2">
             {formatButton('Bold', 'bold', toggleBold)}
@@ -190,6 +207,13 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
             {formatButton('Bullet List', 'bulletList', toggleBulletList)}
             {formatButton('Ordered List', 'orderedList', toggleOrderedList)}
             {formatButton('Prettier', 'prettier', formatContent)}
+            <button
+                type='button'
+                onClick={addImage}
+                className='px-4 py-2 rounded-md text-sm font-semibold transition duration-200 bg-gray-200 hover:bg-gray-300'
+            >
+                Add Image
+            </button>
         </div>
     );
 }

@@ -13,6 +13,7 @@ import DeleteButtonSinglePostComps from '@/app/components/single_post_comps/dele
 import ScrollButton from '@/app/components/single_post_comps/scroll_button.components';
 import TOCSinglePost from './toc.single_post';
 import ReadingVoice from '@/app/components/single_post_comps/reading_voice.single_post_comps';
+import ConvertContentToHTML from './convertContentToHTML.single_post';
 
 
 
@@ -132,9 +133,9 @@ const BlogPost = async ({ params }: { params: Params }) => {
                         <div
                             className=" text-lg mb-4 "
                         >
-                            <div className="mb-8">
-                                <ReadingVoice text={singlePost.content ?? "No content available"} />
-                                <hr className="w-full border-gray-200 my-4"></hr>
+                            <ReadingVoice text={singlePost.content ?? "No content available"} />
+                            {/* <hr className="w-full border-gray-200 my-4"></hr> */}
+                            <div className="my-4 bg-gray-100 rounded-lg py-2 px-4">
                                 <h2 className="text-2xl font-bold mb-2">Mục lục</h2>
                                 <ul className="list-none p-0">
                                     {toc.map((item: any, index: any) => (
@@ -147,9 +148,7 @@ const BlogPost = async ({ params }: { params: Params }) => {
                                     </li>}
                                 </ul>
                             </div>
-                            <div
-                                dangerouslySetInnerHTML={{ __html: singlePost.content ?? "No content available" }}
-                            />
+                            <ConvertContentToHTML content={singlePost.content ?? "No content available"} />
                         </div>
                         <div className="mb-6 ">
                             {singlePost.linkYoutube !== '' &&

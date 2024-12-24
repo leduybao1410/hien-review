@@ -75,6 +75,16 @@ p {
   outline: none !important;
 }
 
+.uploaded-image {
+  width: auto;
+  max-width: 80%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px auto;
+  max-height: 250px;
+  object-fit: contain;
+}
+
 @layer base {
   :root {
     --primary-color: #f06fb0;
